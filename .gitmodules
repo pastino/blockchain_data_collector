@@ -1,0 +1,3 @@
+[submodule "src/entities"]
+	path = src/entities
+	url = https://github.com/pastino/ethereum-entity
