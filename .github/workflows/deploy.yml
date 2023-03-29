@@ -45,18 +45,18 @@ jobs:
             echo "'$process_name' process not found, skipping deletion."
           fi
 
-      - name: Remove old server in ~/ethereum-realtime-collector (ignore error)
+      - name: Remove old server in ~/blockchain_data_collector (ignore error)
         run: |
-          rm -rf ~/ethereum-realtime-collector || true
+          rm -rf ~/blockchain_data_collector || true
 
-      - name: Copy new server to ~/ethereum-realtime-collector
+      - name: Copy new server to ~/blockchain_data_collector
         run: |
-          mkdir -p ~/ethereum-realtime-collector
-          cp -R ./ ~/ethereum-realtime-collector
+          mkdir -p ~/blockchain_data_collector
+          cp -R ./ ~/blockchain_data_collector
 
       - name: create env file
         run: |
-          cd ~/ethereum-realtime-collector
+          cd ~/blockchain_data_collector
           touch .env
           echo SECRET=${{ secrets.SECRET }} >> .env
           echo AWS_ACCESS_ID=${{ secrets.AWS_ACCESS_ID }} >> .env
@@ -96,7 +96,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
         run: |
-          cd ~/ethereum-realtime-collector
+          cd ~/blockchain_data_collector
           npx pm2 install typescript
           npm run start &
 
