@@ -4,9 +4,9 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import { createConnection } from "typeorm";
-import connectionOptions from "./ormconfig";
+import connectionOptions from "./shared/ormconfig";
 import { Alchemy, Network } from "alchemy-sdk";
-import { handleBlockEvent } from "./services/blockEvent";
+import { handleBlockEvent } from "./shared/modules/blockEvent";
 import axios from "axios";
 
 export const IS_PRODUCTION = process.env.NODE_ENV === "production";
