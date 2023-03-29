@@ -10,7 +10,7 @@ import { handleBlockEvent } from "./shared/modules/blockEvent";
 import axios from "axios";
 
 export const IS_PRODUCTION = process.env.NODE_ENV === "production";
-const PORT = IS_PRODUCTION ? process.env.PORT : 4002;
+const PORT = IS_PRODUCTION ? process.env.PORT : 5000;
 
 const app = express();
 app.use(morgan("dev"));
