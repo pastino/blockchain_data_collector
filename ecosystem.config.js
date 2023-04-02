@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "realtime-collector",
+      name: "blockchain_data_collector",
       script: "build/index.js",
       watch: false,
       autorestart: false,
@@ -9,7 +9,7 @@ module.exports = {
       exec_mode: "fork",
       env: {
         NODE_ENV: "production",
-        PORT: 5000,
+        PORT: 5001,
       },
     },
   ],
