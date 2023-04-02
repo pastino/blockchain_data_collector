@@ -37,7 +37,7 @@ jobs:
 
       - name: Stop old server (ignore error)
         run: |
-          process_name="realtime-collector"
+          process_name="blockchain_data_collector"
           process_list=$(npx pm2 jlist)
           process_exists=$(echo $process_list | jq ".[] | select(.name==\"$process_name\")")
           if [ -n "$process_exists" ]; then
