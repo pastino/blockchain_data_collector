@@ -111,14 +111,33 @@ const duplicateDataHandler = async () => {
   }
 };
 
+const unNamedContractHandler = async () => {
+  const contractRepository = getRepository(Contract);
+  const unNamedContracts = await contractRepository.find({
+    where: { name: null },
+  });
+  for (let i = 0; i < unNamedContracts.length; i++) {
+    console.log(`${i + 1} / ${unNamedContracts.length}`);
+    const contract = unNamedContracts[i];
+    const contractMetaData = await alchemy.nft.getContractMetadata(
+      contract.address
+    );
+    if (contractMetaData.name || contractMetaData.openSea?.collectionName) {
+      await contractRepository.update(contract.id, {
+        name: contractMetaData.name || contractMetaData.openSea?.collectionName,
+      });
+    }
+  }
+};
+
 createConnection(connectionOptions)
   .then(() => {
     console.log("DB CONNECTION!");
     app.listen(PORT, async () => {
       console.log(`Listening on port: "http://localhost:${PORT}"`);
       // connect();
-
-      duplicateDataHandler();
+      // duplicateDataHandler();
+      unNamedContractHandler();
     });
   })
   .catch((error) => {
