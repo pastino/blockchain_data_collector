@@ -13,10 +13,6 @@ jobs:
     runs-on: [self-hosted]
 
     steps:
-      - name: Move remote_update_and_deploy.sh to home directory
-        run: |
-          cp ./remote_update_and_deploy.sh ~/
-
       - name: Run update_and_deploy.sh
         run: |
           ~/update_and_deploy.sh
