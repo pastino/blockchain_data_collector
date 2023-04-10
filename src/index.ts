@@ -29,10 +29,8 @@ app.post("/createBlock", async (req: Request, res: Response) => {
 
   try {
     const result = await handleBlockEvent(Number(blockNumber));
-
     return res.status(200).json(result);
   } catch (e: any) {
-    console.log(e);
     return res.status(400).json({ isSuccess: false, error: e.message });
   }
 });
