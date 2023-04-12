@@ -3,11 +3,9 @@ import "reflect-metadata";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import morgan from "morgan";
-import { createConnection, getRepository } from "typeorm";
+import { createConnection } from "typeorm";
 import connectionOptions from "./shared/ormconfig";
 import { handleBlockEvent } from "./shared/blockEventHandler";
-import Web3 from "web3";
-import { LogError } from "./shared/entities/LogError";
 
 export const IS_PRODUCTION = process.env.NODE_ENV === "production";
 const PORT = IS_PRODUCTION ? process.env.PORT : 5001;
