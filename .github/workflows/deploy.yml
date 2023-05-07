@@ -44,7 +44,8 @@ jobs:
           process_name="blockchain_data_collector"
           process_list=$(npx pm2 jlist)
           echo "process_list: $process_list"
-          if [ -n "$process_list" ] && [ "$process_list" != "[]" ]; then
+          is_valid_json=$(echo $process_list | jq empty)
+          if [ $? -eq 0 ]; then
             process_exists=$(echo $process_list | jq ".[] | select(.name==\"$process_name\")")
             if [ -n "$process_exists" ]; then
               npx pm2 delete $process_name
@@ -52,7 +53,7 @@ jobs:
               echo "'$process_name' process not found, skipping deletion."
             fi
           else
-            echo "process_list is empty or not in the expected format, skipping deletion."
+            echo "process_list is not in the expected format, skipping deletion."
           fi
 
       - name: Remove old server in ~/blockchain_data_collector (ignore error)
